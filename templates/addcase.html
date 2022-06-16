@@ -1,0 +1,741 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>测试平台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="https://h5.izuiyou.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all">
+    <script src="/static/layui/layui.js" charset="utf-8"></script><link id="layuicss-laydate" rel="stylesheet" href="http://172.16.2.86:8080/static/layui/css/modules/laydate/default/laydate.css?v=5.2.1" media="all"><link id="layuicss-layer" rel="stylesheet" href="http://172.16.2.86:8080/static/layui/css/modules/layer/default/layer.css?v=3.3.0" media="all"><link id="layuicss-skincodecss" rel="stylesheet" href="http://172.16.2.86:8080/static/layui/css/modules/code.css?v=1" media="all">
+    <script src="../static/js/echarts.js"></script>
+    <link rel="stylesheet" href="http://172.16.2.86:8080/static/layui/css/layui.css" media="all">
+    <script src="http://172.16.2.86:8080/static/layui/layui.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+    </style>
+
+</head>
+<body style="">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    layui.use(['element', 'jquery',"layer"], function(){
+        var element = layui.element;
+        var $ =layui.$;
+        var layer = layui.layer;
+        element.on('nav(demo)', function(elem){
+            layer.msg(elem.text());
+        });
+        $(function () {
+            var url_id = window.location.pathname + window.location.search
+            $(document.getElementById(url_id)).addClass("layui-this");
+            $.ajax({
+                type: 'GET',
+                dataType:"json",
+                url: "/business/get_user_businesses",
+                async:false,
+                timeout : 500000,
+                success:function (data){
+                    var date = data.data.businesses
+                    var author = data.data.username
+                    $.each(date, function (n, val){
+                        var option1 = '<dd><a href="/case/show_cases?business='+val["code"]+'" >'+val["name"]+'</a></dd>'
+                        $("#business_list").append(option1);
+                        $(".author").text(author)
+                    })
+                }
+            })
+        });
+    });
+    layui.use(['element', 'jquery',"layer"], function(){
+        var element = layui.element;
+        var $ =layui.$;
+        var layer = layui.layer;
+        element.on('nav(demo)', function(elem){
+            layer.msg(elem.text());
+        });
+        $(function () {
+            var url_id = window.location.pathname + window.location.search
+            $(document.getElementById(url_id)).addClass("layui-this");
+            $.ajax({
+                type: 'GET',
+                dataType:"json",
+                url: "/business/get_user_businesses",
+                async:false,
+                timeout : 500000,
+                success:function (data){
+                    var date = data.data.businesses
+                    var author = data.data.username
+                    $.each(date, function (n, val){
+                        var option1 = '<dd><a href="/inspection/show_cases?business='+val["code"]+'" >'+val["name"]+'</a></dd>'
+                        $("#inspection_business_list").append(option1);
+                        $(".author").text(author)
+                    })
+                }
+            })
+        });
+    });
+    layui.use(['element', 'jquery',"layer"], function(){
+        var element = layui.element;
+        var $ =layui.$;
+        var layer = layui.layer;
+        element.on('nav(demo)', function(elem){
+            layer.msg(elem.text());
+        });
+        $(function () {
+            var url_id = window.location.pathname + window.location.search
+            $(document.getElementById(url_id)).addClass("layui-this");
+            $.ajax({
+                type: 'GET',
+                dataType:"json",
+                url: "/business/get_user_businesses",
+                async:false,
+                timeout : 500000,
+                success:function (data){
+                    var date = data.data.businesses
+                    var author = data.data.username
+                    $.each(date, function (n, val){
+                        var option1 = '<dd><a href="/h5listen/show_h5?business='+val["code"]+'" >'+val["name"]+'</a></dd>'
+                        $("#h5_business_list").append(option1);
+                        $(".author").text(author)
+                    })
+                }
+            })
+        });
+        $(function () {
+            var url_id = window.location.pathname + window.location.search
+            $(document.getElementById(url_id)).addClass("layui-this");
+            $.ajax({
+                type: 'GET',
+                dataType:"json",
+                url: "/business/get_user_businesses",
+                async:false,
+                timeout : 500000,
+                success:function (data){
+                    var date = data.data.businesses
+                    var author = data.data.username
+                    $.each(date, function (n, val){
+                        var option1 = '<dd><a href="/case_set/index?business='+val["code"]+'" >'+val["name"]+'</a></dd>'
+                        $("#compose_business_list").append(option1);
+                        $(".author").text(author)
+                    })
+                }
+            })
+        });
+    });
+    function to_home() {
+        window.location.href = "/"
+    }
+</script>
+
+<ul class="layui-nav" style="background-color: #3081FF;">
+    <img src="/static/img/zuiyouicon.png" alt="" style="margin-top: -2px;" onclick="to_home()">
+    <li class="layui-nav-item" style="overflow: visible;z-index: 99999">
+        <a href="javascript:;">线下自动化<span class="layui-nav-more"></span></a>
+        <dl class="layui-nav-child" id="business_list">
+        <dd><a href="/case/show_cases?business=0">最右</a></dd><dd><a href="/case/show_cases?business=1">皮皮</a></dd><dd><a href="/case/show_cases?business=2">海外</a></dd><dd><a href="/case/show_cases?business=3">中东</a></dd><dd><a href="/case/show_cases?business=4">妈妈社区</a></dd><dd><a href="/case/show_cases?business=5">商业化</a></dd><dd><a href="/case/show_cases?business=6">海外-US</a></dd></dl>
+    </li>
+    <li class="layui-nav-item" style="overflow: visible;z-index: 99999">
+        <a href="javascript:;">线上监控<span class="layui-nav-more"></span></a>
+        <dl class="layui-nav-child" id="inspection_business_list">
+        <dd><a href="/inspection/show_cases?business=0">最右</a></dd><dd><a href="/inspection/show_cases?business=1">皮皮</a></dd><dd><a href="/inspection/show_cases?business=2">海外</a></dd><dd><a href="/inspection/show_cases?business=3">中东</a></dd><dd><a href="/inspection/show_cases?business=4">妈妈社区</a></dd><dd><a href="/inspection/show_cases?business=5">商业化</a></dd><dd><a href="/inspection/show_cases?business=6">海外-US</a></dd></dl>
+    </li>
+    <li class="layui-nav-item" style="overflow: visible;z-index: 99999">
+        <a href="javascript:;">场景用例管理<span class="layui-nav-more"></span></a>
+        <dl class="layui-nav-child" id="compose_business_list">
+        <dd><a href="/case_set/index?business=0">最右</a></dd><dd><a href="/case_set/index?business=1">皮皮</a></dd><dd><a href="/case_set/index?business=2">海外</a></dd><dd><a href="/case_set/index?business=3">中东</a></dd><dd><a href="/case_set/index?business=4">妈妈社区</a></dd><dd><a href="/case_set/index?business=5">商业化</a></dd><dd><a href="/case_set/index?business=6">海外-US</a></dd></dl>
+    </li>
+    <li class="layui-nav-item" id="/report/show_run_record"><a href="/report/show_run_record">自动化报告</a></li>
+git
+    <li class="layui-nav-item" id="/show_run_record_inspection"><a href="/report/show_run_record_inspection">监控报告</a></li>
+    <li class="layui-nav-item" style="overflow: visible;z-index: 99999">
+        <a href="javascript:;">h5监控<span class="layui-nav-more"></span></a>
+        <dl class="layui-nav-child" id="h5_business_list">
+        <dd><a href="/h5listen/show_h5?business=0">最右</a></dd><dd><a href="/h5listen/show_h5?business=1">皮皮</a></dd><dd><a href="/h5listen/show_h5?business=2">海外</a></dd><dd><a href="/h5listen/show_h5?business=3">中东</a></dd><dd><a href="/h5listen/show_h5?business=4">妈妈社区</a></dd><dd><a href="/h5listen/show_h5?business=5">商业化</a></dd><dd><a href="/h5listen/show_h5?business=6">海外-US</a></dd></dl>
+    </li>
+    <li class="layui-nav-item" id="show_h5_report"><a href="/h5report/show_report">h5监控报告</a></li>
+
+    <li class="layui-nav-item" style="overflow: visible;z-index: 99999">
+        <a href="javascript:;">背包库<span class="layui-nav-more"></span></a>
+        <dl class="layui-nav-child">
+            <dd><a href="/service/index">服务管理</a></dd>
+            <dd><a href="/statistics/show_statistics_data">数据统计</a></dd>
+            <dd><a href="/monitor/index">性能汇总</a></dd>
+            <dd><a href="http://172.16.2.86:8094/ ">Case平台</a></dd>
+            <dd><a href="/flowreplay/index">推荐工具</a></dd>
+            <dd><a href="/presstest/index">压测工具</a></dd>
+            <dd><a href="/auto/check_points">埋点测试</a></dd>
+            <dd><a href="/auto/show_pub_info">发布记录</a></dd>
+            <dd><a href="http://192.168.25.171:8080/auto/check_points">海外埋点测试</a></dd>
+        </dl>
+    </li>
+
+
+
+    <li class="layui-nav-item" lay-unselect="" style="float: right">
+        <img src="//t.cn/RCzsdCq" class="layui-nav-img">
+        <span class="author">xufei</span>
+    </li>
+
+<span class="layui-nav-bar" style="width: 0px; left: 0px; opacity: 0;"></span></ul>
+
+
+
+
+<form class="layui-form layui-form-pane" action="/case/add_one_case/" method="post" enctype="" style="padding: 1%">
+
+    <input type="text" name="api_name" value="api_name" style="display: none">
+    <input type="text" name="level" value="none" style="display: none">
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">业务-服务</label>
+            <div class="layui-input-inline">
+                <select name="business_code" lay-filter="business" id="business">
+                <option value="0">最右</option><option value="1">皮皮</option><option value="2">海外</option><option value="3">中东</option><option value="4">妈妈社区</option><option value="5">商业化</option><option value="6">海外-US</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="最右" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="0" class="layui-this">最右</dd><dd lay-value="1" class="">皮皮</dd><dd lay-value="2" class="">海外</dd><dd lay-value="3" class="">中东</dd><dd lay-value="4" class="">妈妈社区</dd><dd lay-value="5" class="">商业化</dd><dd lay-value="6" class="">海外-US</dd></dl></div>
+            </div>
+
+            <div class="layui-input-inline">
+                <select name="service_name" lay-filter="services" id="services">
+                <option value="1;网关">网关</option><option value="2;网关">网关</option><option value="20;gateway-rec">gateway-rec</option><option value="22;gateway-post">gateway-post</option><option value="45;gateway-review">gateway-review</option><option value="46;chatsrv-gateway">chatsrv-gateway</option><option value="47;gateway-topic">gateway-topic</option><option value="48;视频">视频</option><option value="49;推荐">推荐</option><option value="66;zy-gateway-teamchat">zy-gateway-teamchat</option><option value="72;gateway-misc-search">gateway-misc-search</option><option value="76;h5">h5</option><option value="79;gateway-misc-audio">gateway-misc-audio</option><option value="81;gateway-misc-secondpage">gateway-misc-secondpage</option><option value="96;gateway-account">gateway-account</option><option value="97;gateway-danmaku">gateway-danmaku</option><option value="98;snssrv-gateway-native">snssrv-gateway-native</option><option value="99;snssrv-gateway-nearby">snssrv-gateway-nearby</option><option value="100;gateway-config">gateway-config</option><option value="101;gateway-misc-record">gateway-misc-record</option><option value="102;gateway-misc-mate">gateway-misc-mate</option><option value="103;gateway-misc-user">gateway-misc-user</option><option value="104;gateway-misc-attention">gateway-misc-attention</option><option value="114;gateway-misc-other">gateway-misc-other</option><option value="120;gateway_misc_favor">gateway_misc_favor</option><option value="121;gateway-my">gateway-my</option><option value="122;gateway-favor">gateway-favor</option><option value="123;gateway-share">gateway-share</option><option value="124;gateway- relation">gateway- relation</option><option value="125;gateway-nearby">gateway-nearby</option><option value="130;gateway-paperplane">gateway-paperplane</option><option value="132;gateway-chat">gateway-chat</option><option value="134;gateway-seizeoctopus">gateway-seizeoctopus</option><option value="135;gateway-misc">gateway-misc</option><option value="136;gateway-setting">gateway-setting</option><option value="137;gateway-version">gateway-version</option><option value="138;gateway-user">gateway-user</option><option value="139;gateway-videoapi">gateway-videoapi</option><option value="140;gateway-record">gateway-record</option><option value="141;todo">todo</option><option value="152;gateway-citycode">gateway-citycode</option><option value="153;gateway-daren">gateway-daren</option><option value="154;gateway-bind">gateway-bind</option><option value="155;gateway-assets">gateway-assets</option><option value="156;gatewa- activity">gatewa- activity</option><option value="157;gateway-web">gateway-web</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="网关" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="1;网关" class="layui-this">网关</dd><dd lay-value="2;网关" class="">网关</dd><dd lay-value="20;gateway-rec" class="">gateway-rec</dd><dd lay-value="22;gateway-post" class="">gateway-post</dd><dd lay-value="45;gateway-review" class="">gateway-review</dd><dd lay-value="46;chatsrv-gateway" class="">chatsrv-gateway</dd><dd lay-value="47;gateway-topic" class="">gateway-topic</dd><dd lay-value="48;视频" class="">视频</dd><dd lay-value="49;推荐" class="">推荐</dd><dd lay-value="66;zy-gateway-teamchat" class="">zy-gateway-teamchat</dd><dd lay-value="72;gateway-misc-search" class="">gateway-misc-search</dd><dd lay-value="76;h5" class="">h5</dd><dd lay-value="79;gateway-misc-audio" class="">gateway-misc-audio</dd><dd lay-value="81;gateway-misc-secondpage" class="">gateway-misc-secondpage</dd><dd lay-value="96;gateway-account" class="">gateway-account</dd><dd lay-value="97;gateway-danmaku" class="">gateway-danmaku</dd><dd lay-value="98;snssrv-gateway-native" class="">snssrv-gateway-native</dd><dd lay-value="99;snssrv-gateway-nearby" class="">snssrv-gateway-nearby</dd><dd lay-value="100;gateway-config" class="">gateway-config</dd><dd lay-value="101;gateway-misc-record" class="">gateway-misc-record</dd><dd lay-value="102;gateway-misc-mate" class="">gateway-misc-mate</dd><dd lay-value="103;gateway-misc-user" class="">gateway-misc-user</dd><dd lay-value="104;gateway-misc-attention" class="">gateway-misc-attention</dd><dd lay-value="114;gateway-misc-other" class="">gateway-misc-other</dd><dd lay-value="120;gateway_misc_favor" class="">gateway_misc_favor</dd><dd lay-value="121;gateway-my" class="">gateway-my</dd><dd lay-value="122;gateway-favor" class="">gateway-favor</dd><dd lay-value="123;gateway-share" class="">gateway-share</dd><dd lay-value="124;gateway- relation" class="">gateway- relation</dd><dd lay-value="125;gateway-nearby" class="">gateway-nearby</dd><dd lay-value="130;gateway-paperplane" class="">gateway-paperplane</dd><dd lay-value="132;gateway-chat" class="">gateway-chat</dd><dd lay-value="134;gateway-seizeoctopus" class="">gateway-seizeoctopus</dd><dd lay-value="135;gateway-misc" class="">gateway-misc</dd><dd lay-value="136;gateway-setting" class="">gateway-setting</dd><dd lay-value="137;gateway-version" class="">gateway-version</dd><dd lay-value="138;gateway-user" class="">gateway-user</dd><dd lay-value="139;gateway-videoapi" class="">gateway-videoapi</dd><dd lay-value="140;gateway-record" class="">gateway-record</dd><dd lay-value="141;todo" class="">todo</dd><dd lay-value="152;gateway-citycode" class="">gateway-citycode</dd><dd lay-value="153;gateway-daren" class="">gateway-daren</dd><dd lay-value="154;gateway-bind" class="">gateway-bind</dd><dd lay-value="155;gateway-assets" class="">gateway-assets</dd><dd lay-value="156;gatewa- activity" class="">gatewa- activity</dd><dd lay-value="157;gateway-web" class="">gateway-web</dd></dl></div>
+            </div>
+
+        </div>
+
+
+        <input type="text" name="author" style="display: none" value="xufei">
+
+        <input type="text" name="smoke_response" style="display: none" id="smoke_response">
+
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-block" style="width:45%">
+            <input type="text" name="case_name" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block" style="width: 45%">
+            <input type="text" name="description" lay-verify="required" autocomplete="off" placeholder="请输入描述" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">请求</label>
+        <div class="layui-input-inline">
+            <select name="request_method" id="request_method">
+                <option value="POST">POST</option>
+                <option value="GET">GET</option>
+            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="POST" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="POST" class="layui-this">POST</dd><dd lay-value="GET" class="">GET</dd></dl></div>
+        </div>
+
+
+
+
+
+
+        <div class="layui-input-inline">
+            <input type="text" name="domain" id="HandoverCompany" placeholder="请输入或选择域名" class="layui-input" style="position:absolute;z-index:2;width:83%;" lay-verify="required" value="" onkeyup="search()" autocomplete="off">
+            <select type="text" id="hc_select" lay-filter="hc_select" autocomplete="off" placeholder="移交单位全称" lay-verify="required" class="layui-select" lay-search="">
+
+
+            <option value="http://test.izuiyou.com">http://test.izuiyou.com</option><option value="https://h5test.izuiyou.com">https://h5test.izuiyou.com</option><option value="http://api.izuiyou.com">http://api.izuiyou.com</option><option value="http://api.izuiyou.com/topic">http://api.izuiyou.com/topic</option><option value="https://h5.izuiyou.com">https://h5.izuiyou.com</option><option value="http://recommend.srv.in.ixiaochuan.cn">http://recommend.srv.in.ixiaochuan.cn</option><option value="http://zy-recsrv.srv.ixiaochuan.cn/recpool">http://zy-recsrv.srv.ixiaochuan.cn/recpool</option><option value="http://zy-recsrv.srv.ixiaochuan.cn">http://zy-recsrv.srv.ixiaochuan.cn</option><option value="http://online-zy-k8s-rec-recommend.rec.ixiaochuan.cn">http://online-zy-k8s-rec-recommend.rec.ixiaochuan.cn</option><option value="http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn">http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn</option><option value="http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn/recpool">http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn/recpool</option><option value="http://zy-recsrv.srv.in.ixiaochuan.cn">http://zy-recsrv.srv.in.ixiaochuan.cn</option><option value="http://me-live-test.gifgif.cn">http://me-live-test.gifgif.cn</option><option value="https://test.izuiyou.com">https://test.izuiyou.com</option><option value="http://test.icocofun.com">http://test.icocofun.com</option><option value="http://hiya-web-test.ixiaochuan.cn">http://hiya-web-test.ixiaochuan.cn</option><option value="http://webtestapi.ixiaochuan.cn">http://webtestapi.ixiaochuan.cn</option><option value="https://op-test.ixiaochuan.cn">https://op-test.ixiaochuan.cn</option><option value="http://www.test.icocofun.com">http://www.test.icocofun.com</option><option value="http://melive-web-test.ixiaochuan.cn">http://melive-web-test.ixiaochuan.cn</option><option value="http://h5test.izuiyou.com">http://h5test.izuiyou.com</option></select><div class="layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="http://test.izuiyou.com" class="layui-input"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="http://test.izuiyou.com" class="layui-this">http://test.izuiyou.com</dd><dd lay-value="https://h5test.izuiyou.com" class="">https://h5test.izuiyou.com</dd><dd lay-value="http://api.izuiyou.com" class="">http://api.izuiyou.com</dd><dd lay-value="http://api.izuiyou.com/topic" class="">http://api.izuiyou.com/topic</dd><dd lay-value="https://h5.izuiyou.com" class="">https://h5.izuiyou.com</dd><dd lay-value="http://recommend.srv.in.ixiaochuan.cn" class="">http://recommend.srv.in.ixiaochuan.cn</dd><dd lay-value="http://zy-recsrv.srv.ixiaochuan.cn/recpool" class="">http://zy-recsrv.srv.ixiaochuan.cn/recpool</dd><dd lay-value="http://zy-recsrv.srv.ixiaochuan.cn" class="">http://zy-recsrv.srv.ixiaochuan.cn</dd><dd lay-value="http://online-zy-k8s-rec-recommend.rec.ixiaochuan.cn" class="">http://online-zy-k8s-rec-recommend.rec.ixiaochuan.cn</dd><dd lay-value="http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn" class="">http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn</dd><dd lay-value="http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn/recpool" class="">http://online-zy-k8s-rec-recsrv.rec.ixiaochuan.cn/recpool</dd><dd lay-value="http://zy-recsrv.srv.in.ixiaochuan.cn" class="">http://zy-recsrv.srv.in.ixiaochuan.cn</dd><dd lay-value="http://me-live-test.gifgif.cn" class="">http://me-live-test.gifgif.cn</dd><dd lay-value="https://test.izuiyou.com" class="">https://test.izuiyou.com</dd><dd lay-value="http://test.icocofun.com" class="">http://test.icocofun.com</dd><dd lay-value="http://hiya-web-test.ixiaochuan.cn" class="">http://hiya-web-test.ixiaochuan.cn</dd><dd lay-value="http://webtestapi.ixiaochuan.cn" class="">http://webtestapi.ixiaochuan.cn</dd><dd lay-value="https://op-test.ixiaochuan.cn" class="">https://op-test.ixiaochuan.cn</dd><dd lay-value="http://www.test.icocofun.com" class="">http://www.test.icocofun.com</dd><dd lay-value="http://melive-web-test.ixiaochuan.cn" class="">http://melive-web-test.ixiaochuan.cn</dd><dd lay-value="http://h5test.izuiyou.com" class="">http://h5test.izuiyou.com</dd></dl></div>
+        </div>
+
+        <div class="layui-input-inline" style="width: 45%">
+            <input type="text" id="api_url" name="api_url" lay-verify="required" placeholder="例:http://api.izuiyou.com/index/recommend" autocomplete="off" class="layui-input">
+        </div>
+        <button type="button" class="layui-btn layui-btn-normal" id="test">调试接口</button>
+        <button type="button" class="layui-btn layui-btn-normal" id="edit_point">编辑校验点</button>
+
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <div class="layui-inline" style="width: 45%;">
+            <label class="layui-form-label">请求参数</label>
+            <div class="layui-input-block">
+            <textarea placeholder="请您输入压缩后的JSON( 如: {&quot;username&quot;:&quot;zhangsan&quot;,&quot;password&quot;:&quot;123456&quot;}); 严禁输入格式化后的JSON(即带有回车换行的JSON)" style="height: 200px" class="layui-textarea" name="parameter" id="request_param" lay-verify="required"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-inline" style="width: 45%; float:right; margin-right: 8%">
+            <div class="layui-input-block" id="response_param" style="height:450px;overflow: scroll;"></div>
+        </div>
+
+        <div class="layui-inline" style="width: 45%;">
+            <label class="layui-form-label">检查点</label>
+            <div class="layui-input-block">
+            <textarea placeholder="请输入内容" class="layui-textarea" style="height: 200px" id="check_point" name="check_point" lay-verify="required">{"$.ret":{"eq":1}}</textarea>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+
+        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="submit">提交保存</button>
+        <button type="button" class="layui-btn" lay-filter="transfer" id="transfer">转换为场景步骤</button>
+
+    </div>
+</form>
+
+
+
+<div class="layui-form json-height" style="display: none">
+
+
+
+</div>
+
+<div style="display: none;padding: 10px" id="add_one_case_set">
+    <div class="layui-form-item">
+        <label class="layui-form-label">业务线</label>
+        <div class="layui-input-block">
+            <select name="case_set_business_code" lay-filter="business" id="case_set_business_code">
+                <option value="0">最右</option>
+                <option value="1">皮皮</option>
+                <option value="2">海外</option>
+                <option value="3">中东</option>
+                <option value="4">妈妈社区</option>
+                <option value="5">商业化</option>
+                <option value="6">海外-US</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">场景名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="case_set_name" lay-verify="required" id="case_set_name" autocomplete="off" placeholder="请输入场景名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">场景描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="case_set_description" id="case_set_description" lay-verify="required" autocomplete="off" placeholder="请输入场景描述" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">公共参数配置</label>
+        <div class="layui-input-block">
+                <textarea name="case_set_parameter" id="case_set_parameter" autocomplete="off" placeholder="请输入公共参数
+例如：{&quot;token&quot;:&quot;TbK8NKy_8L7zjExo5SdX9t6ttdeqpr6jsN7j4&quot;,&quot;pid&quot;:1}" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="float: right">
+        <button class="layui-btn" id="create_sence_case">保存</button>
+    </div>
+</div>
+
+<script type="application/javascript" src="/static/js/case_json_add.js"></script>
+<script type="application/javascript" src="/static/js/jsonshow.js"></script>
+<script type="application/javascript" src="/static/js/libs.js"></script>
+<script type="module">
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,$ = layui.jquery
+            ,layer = layui.layer
+
+
+        function get_service_by_business(bus){
+            $.ajax({
+                type: 'GET',
+                url: '/service/list?business='+bus,
+                success: function (data) {
+
+                    $("#services").children().remove()
+                    $.each(data.data, function(key, val) {
+
+                        var option1 = $("<option>").val(val["id"]+";"+val["service_name"]).text(val["service_name"]);
+                        $("#services").append(option1);
+                        form.render('select');
+                    });
+                }
+            });
+        }
+
+        function get_response(){
+            var request_param = $("#request_param").val()
+            var request_url = $("#api_url").val()
+            let body = ""
+            $.ajax({
+                type: 'POST',
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "json",
+                url: "/auto/perform_smoke",
+                async: false,
+                timeout: 500000,
+                data: {
+                    "api_url":request_url,
+                    "parameter":request_param
+                },
+                success:function (data){
+
+                    body = JSON.parse(data.data.body)
+                }
+            });
+            return body
+        }
+
+        function isNumber(val) {
+            var regPos = /^\d+(\.\d+)?$/;
+            var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;
+            if(regPos.test(val) || regNeg.test(val)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function get_domain_by_business(bus){
+            $.ajax({
+                type: 'GET',
+                url: '/case/get_domains?business='+bus,
+                success: function (data) {
+                    $("#hc_select").children().remove()
+                    $.each(data.data, function(key, val) {
+
+                        var option1 = $("<option>").val(val["domain_name"]).text(val["domain_name"]);
+                        $("#hc_select").append(option1);
+                        form.render('select');
+                    });
+                }
+            });
+        }
+
+
+        let first_business
+        $(function (){
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                url: "/business/get_user_businesses",
+                async: false,
+                timeout: 500000,
+                success: function (data) {
+                    var date = data.data.businesses
+                    first_business = date[0]['code']
+                    $.each(date, function (n, val) {
+                        var option1 = '<option value="' + val["code"] + '" >' + val["name"] + '</option>'
+                        $("#business").append(option1);
+                        form.render('select');
+                    })
+                }
+            });
+
+            get_service_by_business(first_business)
+
+            get_domain_by_business(first_business)
+
+        })
+
+
+        form.on('select(business)', function(data) {
+            get_service_by_business(data.value)
+            get_domain_by_business(data.value)
+            form.render()
+        });
+
+        form.on('select(hc_select)', function (data) {
+            var select_text = data.elem[data.elem.selectedIndex].text;
+            $("#HandoverCompany").val(select_text );
+            $("#hc_select").next().find("dl").css({ "display": "none" });
+            form.render();
+        });
+
+
+        $(document).on('click', '#transfer', function () {
+
+            layer.open({
+                type: 1
+                , title: '新增场景用例'
+                , area: ['700px', '400px']
+                , shade: 0
+                , maxmin: true
+                , offset: [100, 600]
+                , content: $("#add_one_case_set")
+
+
+
+            });
+        })
+
+        $(document).on('click', '#create_sence_case', function () {
+
+            let case_set_id=-1
+            let case_set_business_code = $("#case_set_business_code").val()
+            let case_set_name = $("#case_set_name").val()
+            let case_set_description = $("#case_set_description").val()
+            let case_set_parameter = $("#case_set_parameter").val()
+            $.ajax({
+                type: 'POST',
+                url: "/case_set/add_case_set_ajax",
+                data: {
+                    "case_set_name":case_set_name,
+                    "business_code":case_set_business_code,
+                    "parameter":case_set_parameter,
+                    "description":case_set_description
+                },
+                success:function (data){
+                    if (data.code == 200) {
+
+                        $("#add_one_case_set").hide();
+                        case_set_id = data.data;
+
+                        let business_code = $("[name='business_code']").val();
+                        let service_name = $("[name='service_name']").val()
+                        let service_id = service_name.split(";")[0]
+                        let author = $("[name='author']").val()
+                        let smoke_response = $("[name='smoke_response']").val()
+                        let case_name = $("[name='case_name']").val()
+                        let description = $("[name='description']").val()
+                        let request_method = $("[name='request_method']").val()
+                        let domain = $("[name='domain']").val()
+                        let api_url = $("[name='api_url']").val()
+                        let parameter = $("[name='parameter']").val()
+                        let response_param = $("[name='response_param']").val()
+                        let check_point = $("[name='check_point']").val()
+                        window.location.href = "/case/transfer_to_case_set_step?case_set_id=" + case_set_id +
+                            "&business_code=" + business_code +
+                            "&service_id=" + service_id +
+                            "&author=" + author +
+                            "&smoke_response=" + smoke_response +
+                            "&case_name=" + case_name +
+                            "&description=" + description +
+                            "&request_method=" + request_method +
+                            "&domain=" + domain +
+                            "&api_url=" + api_url +
+                            "&parameter=" + parameter +
+                            "&response_param=" + response_param +
+                            "&check_point=" + check_point;
+                    } else {
+                        layer.msg(data.msg)
+                    }
+                },
+            });
+        })
+
+
+
+        let obj
+        $(document).on('click', '#test', function () {
+            const business = $("#business option:selected").val()
+            const request_param = $("#request_param").val()
+            const request_url = $("#api_url").val()
+            var domain = $('#HandoverCompany').val()
+            if(business === "" || request_param === "" || request_url === "" || domain === ""){
+                layer.msg("业务线、请求地址、参数、域名不能为空")
+                return
+            }
+            console.log(domain+request_url)
+            $.ajax({
+                type: 'POST',
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "json",
+                url: "/auto/perform_smoke",
+                async: false,
+                timeout: 500000,
+                data: {
+                    "business":business,
+                    "api_url":domain + request_url,
+                    "parameter":request_param
+                },
+                success:function (data){
+
+                    $("#smoke_response").val(data.data.body)
+                    try {
+                        obj = JSON.parse(data.data.body)
+                    }
+                    catch(err){
+                        alert("冒烟失败 - " +data.data.httpCode + "--" + err)
+                        return
+                    }
+                    var body = JSON.stringify(obj, undefined, 4)
+                    $("#response_param").html("")
+                    document.getElementById("response_param").appendChild(document.createElement('pre')).innerHTML = syntaxHighlight(body);
+                }
+            });
+
+            $(".json-height").html("")
+            $(".json-height").append(first_pre)
+
+            $.each(analysisJson(obj).keys, function(i,v){
+                $(".json-height").find("#json_head").append('<option value='+v+'>'+ v+'</option>')
+            });
+            form.render()
+            form.render("select")
+        });
+
+        $(document).on('click', '#edit_point', function () {
+            if (obj === undefined) {
+                layer.msg("请先获取调试的返回数据")
+                return
+            }
+            else{
+                layer.open({
+                    type: 1
+                    ,title: '当你选择该窗体时，即会在最顶端'
+                    ,area: ['1400px', '300px']
+                    ,shade: 0
+                    ,maxmin: true
+                    ,offset: "lb"
+                    ,content: $(".json-height")
+                    ,btn: ['保存并关闭']
+                    ,yes: function(){
+
+                        const result_list = new Array()
+                        $(".json-nb").each(function (){
+                            let node = ""
+                            $(this).find(".data_block").find("option:selected").each(function (){
+                                if(isNumber($(this).text())){
+                                    var isArray = $(this).parent().attr("isArray")
+                                    if (isArray == undefined) {
+                                        node = node + $(this).text() +"."
+                                    } else {
+                                        node = node.substring(0,node.length-1) + "[" + $(this).text() +"]."
+                                    }
+                                }else{
+                                    node = node + $(this).text() +"."
+                                }
+                            });
+                            node = node.substring(0,node.length-1)
+                            const checkType = $(this).find("#check_type").find("option:selected").val();
+                            const value = $(this).find("#value").val();
+                            const valueType = $(this).find("#value_type").find("option:selected").text();
+                            const now = {"node":node,"checkType":checkType, "value":value, "valueType":valueType}
+                            result_list.push(now)
+                        });
+
+                        const result = generateJsonPath(result_list, obj)
+                        if(result.code === -1){
+                            alert(result.msg)
+                            return
+                        }
+                        $("#check_point").val(JSON.stringify(result.data))
+                        layer.closeAll();
+                    }
+                    ,zIndex: layer.zIndex
+                    ,success: function(layero){
+                        layer.setTop(layero);
+                    }
+                });
+
+                layer.open({
+                    type: 1
+                    ,title: ' response数据（位置固定，无法拖动，可以滚动）'
+                    ,area: ['500px', '600px']
+                    ,shade: 0
+                    ,maxmin: true
+                    ,move:false
+                    ,offset: "rt"
+                    ,content: $("#response_param")
+                    ,success: function(layero){
+                        layer.setTop(layero);
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '#right_add', function () {
+
+            var arr =new Array();
+            const sel_val = $(this).parent().parent().find(".data_block").find("option:selected")
+            sel_val.each(function() {
+                if(isNumber($(this).text())){
+                    var isArray = $(this).parent().attr("isArray")
+                    if (isArray == undefined) {
+                        arr.push($(this).text())
+                    } else {
+
+                        arr[arr.length - 1] = arr[arr.length - 1] + "[" + $(this).text() + "]";
+                    }
+                }else{
+                    arr.push($(this).text())
+                }
+            });
+
+            const res = analysisJson(obj, arr);
+            if(res["isArray"] === true){
+                $(this).parent().parent().find(".data_block").append(check_sel)
+                var last_json = $(this).parent().parent().find(".data_block").children().last().find("#json_head")
+
+                last_json.attr("isArray", "true")
+                for (let i = 0; i < res.arrayLength; i++) {
+                    last_json.append('<option value='+i+'>'+ i+'</option>')
+                }
+            }
+
+            if (res.keys.length != 0) {
+                $(this).parent().parent().find(".data_block").append(check_sel);
+                var last_json = $(this).parent().parent().find(".data_block").children().last().find("#json_head")
+                $.each(res.keys, function(i,v){
+                    last_json.append('<option value='+v+'>'+ v+'</option>')
+                });
+            }
+
+            form.render()
+        });
+
+        $(document).on('click', '#left_rm', function () {
+            $(this).parent().parent().find(".data_block").children().last().remove()
+            form.render()
+        });
+
+        $(document).on('click', '#down_add', function () {
+
+
+            const these = $(this);
+            these.parent().parent().after(pre)
+
+            $.each(analysisJson(obj).keys, function(i,v){
+                these.parent().parent().next().find("#json_head").append('<option value='+v+'>'+ v+'</option>')
+            });
+            form.render()
+            form.render("select")
+        });
+
+        $(document).on('click', '#up_rm', function () {
+
+            $(this).parent().parent().remove()
+            form.render()
+        });
+
+        $('#HandoverCompany').bind('input propertychange', function () {
+            var value = $("#HandoverCompany").val();
+            $("#hc_select").val(value);
+            form.render();
+            $("#hc_select").next().find("dl").css({ "display": "block" });
+            var dl = $("#hc_select").next().find("dl").children();
+            var j = -1;
+            for (var i = 0; i < dl.length; i++) {
+                if (dl[i].innerHTML.indexOf(value) <= -1) {
+                    dl[i].style.display = "none";
+                    j++;
+                }
+                if (j == dl.length-1) {
+                    $("#hc_select").next().find("dl").css({ "display": "none" });
+                }
+            }
+        });
+    });
+</script>
+
+<style>
+    pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+    .string { color: green; }
+    .number { color: darkorange; }
+    .boolean { color: blue; }
+    .null { color: magenta; }
+    .key { color: red; }
+    #response_param::-webkit-scrollbar {
+        display: none;}
+</style>
+
+
+</body></html>

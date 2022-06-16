@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <link rel="stylesheet" href="http://172.16.2.86:8080/static/layui/css/layui.css" media="all">
+    <script src="http://172.16.2.86:8080/static/layui/layui.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<ul class="layui-nav" style="background-color: #3081FF;">
+    <li class="layui-nav-item" style="overflow: visible;z-index: 99999">
+        <a href="javascript:;">线上监控<span class="layui-nav-more"></span></a>
+        <dl class="layui-nav-child" id="inspection_business_list">
+        <dd><a href="/inspection/show_cases?business=0">最右</a></dd><dd><a href="/inspection/show_cases?business=1">皮皮</a></dd><dd><a href="/inspection/show_cases?business=2">海外</a></dd><dd><a href="/inspection/show_cases?business=3">中东</a></dd><dd><a href="/inspection/show_cases?business=4">妈妈社区</a></dd><dd><a href="/inspection/show_cases?business=5">商业化</a></dd><dd><a href="/inspection/show_cases?business=6">海外-US</a></dd></dl>
+    </li>
+</ul>
+<div>
+        <div class="layui-form layui-inline" style="margin-right:10%">
+            <div class="layui-inline">
+                <select name="" id="search_service">
+                    <option value="">请选择服务</option>
+                <option value="29">index</option><option value="31">post</option><option value="32">review</option><option value="33">user|my|member</option><option value="34">topic</option><option value="35">maga-gateway-account</option><option value="36">share</option><option value="38">attention</option><option value="39">config|setting</option><option value="43">search</option><option value="51">maga-chatsrv-gateway</option><option value="94">activity</option><option value="95">ad</option><option value="129">other</option><option value="147">todo</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择服务" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择服务</dd><dd lay-value="29" class="">index</dd><dd lay-value="31" class="">post</dd><dd lay-value="32" class="">review</dd><dd lay-value="33" class="">user|my|member</dd><dd lay-value="34" class="">topic</dd><dd lay-value="35" class="">maga-gateway-account</dd><dd lay-value="36" class="">share</dd><dd lay-value="38" class="">attention</dd><dd lay-value="39" class="">config|setting</dd><dd lay-value="43" class="">search</dd><dd lay-value="51" class="">maga-chatsrv-gateway</dd><dd lay-value="94" class="">activity</dd><dd lay-value="95" class="">ad</dd><dd lay-value="129" class="">other</dd><dd lay-value="147" class="">todo</dd></dl></div>
+            </div>
+            <div class="layui-inline">
+                <input type="text" class="search_input_url layui-input" placeholder="请输入url">
+            </div>
+            <div class="layui-inline">
+                <select name="" id="search_strategy">
+                    <option value="">请选择巡检策略</option>
+                <option value="1">1分钟</option><option value="5">5分钟</option><option value="10">10分钟</option><option value="15">15分钟</option><option value="30">30分钟</option><option value="60">1小时</option><option value="360">6小时</option><option value="720">12小时</option><option value="1440">24小时</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择巡检策略" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择巡检策略</dd><dd lay-value="1" class="">1分钟</dd><dd lay-value="5" class="">5分钟</dd><dd lay-value="10" class="">10分钟</dd><dd lay-value="15" class="">15分钟</dd><dd lay-value="30" class="">30分钟</dd><dd lay-value="60" class="">1小时</dd><dd lay-value="360" class="">6小时</dd><dd lay-value="720" class="">12小时</dd><dd lay-value="1440" class="">24小时</dd></dl></div>
+            </div>
+            <div class="layui-inline">
+                <input type="text" id="case_id" class="layui-input" placeholder="请输入用例ID">
+            </div>
+            <div class="layui-inline">
+                <input type="text" id="case_name" class="layui-input" placeholder="请输入用例名称">
+            </div>
+            <div class="layui-inline">
+                <input type="text" id="author" class="layui-input" placeholder="请输入添加人全拼">
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-sm " style="display: inline" id="search_btn">搜索</button>
+            </div>
+        </div>
+        <div class="layui-inline" style="float: right">
+{#            <button class="layui-btn open_service_list">按服务执行用例</button>#}
+{#            <button class="layui-btn run_all_case_by_business">执行当前业务下全部用例</button>#}
+            <button class="layui-btn add_case">添加用例</button>
+        </div>
+    </div>
+<script>
+$(document).on('click', '.add_case', function(){
+    window.open("/case/show/add_case", "_blank")
+})
+</script>
+</body>
+
+</html>

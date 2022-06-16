@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造数据</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+    <script>
+        function query(value) {
+            var phone = document.getElementById("phone").value
+            var tid = document.getElementById('tid').value
+            var time = document.getElementById('time').value
+            console.log(phone)
+            // window.alert('2343')
+            $.ajax({
+                type: 'post',
+                url: "{% url 'creat_data' %}",
+                data: JSON.stringify({
+                    "phone": Number(phone),
+                    "tid": Number(tid),
+                    'time': Number(time),
+                }),
+                dataType: "json",
+                success: function (msg) {
+                    alert(msg)
+                }
+            })
+        }
+
+    </script>
+</head>
+
+<h3>发帖子:</h3><br>
+</div>
+<input type="text" name="iPhone" placeholder="请输入手机号" id="phone"><br><br>
+<input type="text" name="iPhone" placeholder="输入话题ID" id="tid"><br><br>
+<input type="text" name="iPhone" placeholder="输入话题名称" id="tname"><br>
+<p>类型</p>
+<body>
+
+<input type="text" name="iPhone" placeholder="执行次数" id="time"><br><br>
+<button onclick="query()">执行</button>
+
+</body>
+</html>
